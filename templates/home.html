@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <link
+      rel="text/css"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <form class="form-horizontal" method="post" action="/">    
+        <h4>Public Repo Url</h4>        
+          <input
+            type="text"
+            class="form-control"
+            name="url"
+            placeholder="Public Url"
+          />            
+            
+      <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+        <br><br>
+          <button type="submit" class="btn btn-primary">Retrieve Issues</button>
+        </div>
+      </div>
+    </form>
+    {% if  error %}
+
+        <h3> Error : {{ error.message }} </h3>
+    {% endif %}
+    {% if context  %}
+    <h4> Issues retrieved for <a href="{{ context.user_repo_url }}" target="_blank">{{ context.user_repo_url }}</a> </h4>
+    <ol>
+        <li> All Open Issues </li> <h4>{{ context.all_issues }} </h4>
+        <li> Opened in last 24 Hrs </li><h4> {{ context.opened_in_last_24_hrs }}</h4>
+        <li> Opened in last 7 Days </li> <h4>{{ context.opened_in_last_7_days }}</h4>
+        <li> Opened  before 7 Days </li> <h4>{{ context.opened_before_7_days }}</h4>
+    </ol>
+    {% endif %}
+  </body>
+</html>
